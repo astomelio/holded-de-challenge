@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "holded-beam"
+version = "0.1.0"
+description = "Apache Beam pipeline for Holded events processing"
+authors = ["Holded Team"]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+apache-beam = "^2.50.0"
+kafka-python = "^2.0.2"
+pymysql = "^1.1.2"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.4.3"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

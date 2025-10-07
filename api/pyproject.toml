@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "holded-api"
+version = "0.1.0"
+description = "Holded Events API for data ingestion"
+authors = ["Holded Team"]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+fastapi = "^0.104.1"
+uvicorn = {extras = ["standard"], version = "^0.24.0"}
+kafka-python = "^2.0.2"
+pydantic = "^2.5.0"
+python-multipart = "^0.0.6"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.4.3"
+pytest-asyncio = "^0.21.1"
+httpx = "^0.25.2"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

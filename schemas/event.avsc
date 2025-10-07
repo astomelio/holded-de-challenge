@@ -1,0 +1,66 @@
+{
+  "type": "record",
+  "name": "HoldedEvent",
+  "namespace": "com.holded.events",
+  "fields": [
+    {
+      "name": "event_id",
+      "type": "string",
+      "doc": "Unique identifier for the event"
+    },
+    {
+      "name": "event_type",
+      "type": {
+        "type": "enum",
+        "name": "EventType",
+        "symbols": ["USER_LOGIN", "USER_LOGOUT", "INVOICE_CREATED", "INVOICE_UPDATED", "INVOICE_DELETED", "PAYMENT_RECEIVED", "CUSTOMER_CREATED", "CUSTOMER_UPDATED", "PRODUCT_CREATED", "PRODUCT_UPDATED"]
+      },
+      "doc": "Type of event that occurred"
+    },
+    {
+      "name": "user_id",
+      "type": ["null", "string"],
+      "default": null,
+      "doc": "ID of the user who triggered the event"
+    },
+    {
+      "name": "company_id",
+      "type": "string",
+      "doc": "ID of the company associated with the event"
+    },
+    {
+      "name": "timestamp",
+      "type": {
+        "type": "long",
+        "logicalType": "timestamp-millis"
+      },
+      "doc": "Timestamp when the event occurred"
+    },
+    {
+      "name": "metadata",
+      "type": {
+        "type": "map",
+        "values": "string"
+      },
+      "doc": "Additional metadata for the event"
+    },
+    {
+      "name": "ip_address",
+      "type": ["null", "string"],
+      "default": null,
+      "doc": "IP address of the user"
+    },
+    {
+      "name": "user_agent",
+      "type": ["null", "string"],
+      "default": null,
+      "doc": "User agent string"
+    },
+    {
+      "name": "session_id",
+      "type": ["null", "string"],
+      "default": null,
+      "doc": "Session identifier"
+    }
+  ]
+}
