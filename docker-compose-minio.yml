@@ -1,0 +1,67 @@
+version: '3.8'
+
+services:
+  # MinIO for JSON storage
+  minio:
+    image: minio/minio:latest
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    environment:
+      MINIO_ROOT_USER: minioadmin
+      MINIO_ROOT_PASSWORD: minioadmin123
+    command: server /data --console-address ":9001"
+    volumes:
+      - minio_data:/data
+
+  # PostgreSQL for business data
+  postgres:
+    image: postgres:13
+    environment:
+      POSTGRES_DB: holded_business
+      POSTGRES_USER: holded
+      POSTGRES_PASSWORD: holded123
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  # Schema Registry
+  schema-registry:
+    image: confluentinc/cp-schema-registry:latest
+    ports:
+      - "8081:8081"
+    environment:
+      SCHEMA_REGISTRY_HOST_NAME: schema-registry
+      SCHEMA_REGISTRY_KAFKASTORE_CONNECTION_URL: zookeeper:2181
+
+  # Zookeeper for Schema Registry
+  zookeeper:
+    image: confluentinc/cp-zookeeper:latest
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+    ports:
+      - "2181:2181"
+
+  # API Service
+  api:
+    build: ./api
+    ports:
+      - "8000:8000"
+    depends_on:
+      - minio
+      - postgres
+    environment:
+      MINIO_ENDPOINT: minio:9000
+      MINIO_ACCESS_KEY: minioadmin
+      MINIO_SECRET_KEY: minioadmin123
+      POSTGRES_HOST: postgres
+      POSTGRES_PORT: 5432
+      POSTGRES_USER: holded
+      POSTGRES_PASSWORD: holded123
+      POSTGRES_DATABASE: holded_business
+
+volumes:
+  minio_data:
+  postgres_data:

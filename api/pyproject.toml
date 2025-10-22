@@ -3,14 +3,16 @@ name = "holded-api"
 version = "0.1.0"
 description = "Holded Events API for data ingestion"
 authors = ["Holded Team"]
+package-mode = false
 
 [tool.poetry.dependencies]
 python = "^3.8"
 fastapi = "^0.104.1"
 uvicorn = {extras = ["standard"], version = "^0.24.0"}
-kafka-python = "^2.0.2"
 pydantic = "^2.5.0"
 python-multipart = "^0.0.6"
+minio = "^7.2.0"
+psycopg2-binary = "^2.9.9"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^7.4.3"
