@@ -3,7 +3,7 @@
 
 CREATE TABLE IF NOT EXISTS events (
     event_id VARCHAR(255) PRIMARY KEY,
-    event_type VARCHAR(50) NOT NULL,
+    event_type VARCHAR(255) NOT NULL, -- Increased size to accommodate long Holded event types
     user_id VARCHAR(255),
     company_id VARCHAR(255) NOT NULL,
     timestamp BIGINT NOT NULL,
@@ -39,7 +39,7 @@ CREATE INDEX idx_events_created_at ON events(created_at);
 CREATE TABLE IF NOT EXISTS events_summary (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     company_id VARCHAR(255) NOT NULL,
-    event_type VARCHAR(50) NOT NULL,
+    event_type VARCHAR(255) NOT NULL, -- Increased size to accommodate long Holded event types
     business_context VARCHAR(50) NOT NULL,
     event_count INT NOT NULL DEFAULT 0,
     first_event_timestamp BIGINT,

@@ -63,7 +63,7 @@ class HoldedEventHeaders(BaseModel):
     """Headers section of Holded event"""
     type: str
     targetSubscription: str
-    # Usar Field con alias para manejar los nombres complejos
+    # Use Field with alias to handle complex names
     new_context_stamp: Optional[Dict[str, Any]] = Field(None, alias="X-Message-Stamp-Holded\\Shared\\Infrastructure\\Messenger\\Stamp\\NewContextStamp")
     timestamp_stamp: Optional[Dict[str, Any]] = Field(None, alias="X-Message-Stamp-Holded\\Core\\Messaging\\Messenger\\Stamp\\TimestampStamp")
     message_id_stamp: Optional[Dict[str, Any]] = Field(None, alias="X-Message-Stamp-Holded\\Core\\Messaging\\Messenger\\Stamp\\MessageIdStamp")
